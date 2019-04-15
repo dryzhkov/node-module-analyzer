@@ -1,0 +1,21 @@
+{
+  "name": "node-module-analyzer",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "bin": {
+    "node-modules-analyzer": "./src/bin/cli.js"
+  },
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.0"
+  },
+  "dependencies": {
+    "big-json": "^2.0.2",
+    "commander": "^2.20.0"
+  }
+}

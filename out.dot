@@ -1,0 +1,11 @@
+digraph G {
+"bfj" -> "bluebird"
+"bfj" -> "check-types"
+"bfj" -> "hoopy"
+"bfj" -> "tryer"
+"bluebird"
+"check-types"
+"hoopy"
+"lodash"
+"tryer"
+}
