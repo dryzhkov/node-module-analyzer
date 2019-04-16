@@ -1,6 +1,8 @@
 const fs = require("fs");
 const json = require("big-json");
 const outFilePath = "out.dot";
+const { exec } = require("child_process");
+
 module.exports = filePath => {
   if (!fs.existsSync(filePath)) {
     console.error(`File not found. ${filePath}`);
@@ -9,7 +11,10 @@ module.exports = filePath => {
   let readStream = fs.createReadStream(filePath);
   let parseStream = json.createParseStream();
 
-  parseStream.on("data", processData);
+  parseStream.on("data", pojo => {
+    processData(pojo);
+    generateSVG();
+  });
 
   readStream.pipe(parseStream);
 };
@@ -45,4 +50,8 @@ const processData = pojo => {
   );
 
   writeStream.write("}");
+};
+
+const generateSVG = () => {
+  exec("dot -Tsvg out.dot -o out.svg");
 };
