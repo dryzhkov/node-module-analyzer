@@ -1,6 +1,7 @@
 const fs = require("fs");
 const json = require("big-json");
-const outFilePath = "out.dot";
+const outDotFilePath = "out.dot";
+const outSvgFilePath = "out.svg";
 const { exec } = require("child_process");
 
 module.exports = filePath => {
@@ -22,7 +23,7 @@ module.exports = filePath => {
 const processData = pojo => {
   let depsCount = 0;
   let devDepsCount = 0;
-  let writeStream = fs.createWriteStream(outFilePath);
+  let writeStream = fs.createWriteStream(outDotFilePath);
   writeStream.write("digraph G {\n");
   Object.keys(pojo.dependencies).forEach((value, index) => {
     if (pojo.dependencies[value].dev) {
@@ -46,12 +47,13 @@ const processData = pojo => {
   console.log(
     `${
       pojo.name
-    } has ${depsCount} dependencies.\nWriting results to ${outFilePath}`
+    } has ${depsCount} dependencies.\nWriting results to ${outDotFilePath}`
   );
 
   writeStream.write("}");
 };
 
 const generateSVG = () => {
-  exec("dot -Tsvg out.dot -o out.svg");
+  console.log("creating " + outSvgFilePath);
+  exec("dot -Tsvg " + outDotFilePath + " -o " + outSvgFilePath);
 };

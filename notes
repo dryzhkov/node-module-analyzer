@@ -1,5 +1,0 @@
-1. node-modules-analyzer package-lock.json
-2. dot -Tsvg out.dot -o out.svg
-
-
-npx webpack --mode production --profile --json > stats.json
